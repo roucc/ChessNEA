@@ -1,0 +1,58 @@
+# Colab
+
+https://colab.research.google.com/
+
+ChessEvaluation.ipynb
+
+Code runs at 11ms per step on laptop - training one epoch takes 20mins per epoch
+
+T4 GPU was about the same speed as CPU on my laptop 12ms per step
+
+V100 GPU was 8ms/step
+
+With batch size 256
+V100 GPU was 3ms/step of 256
+AITrain.train(size=1000000,batch_size=256,epochs=50)
+
+Tweak the batch size to maximize GPU RAM which speeds things up
+Tweak the size to maximize CPU RAM (since we hold training data in RAM)
+AITrain.train(size=5000000,batch_size=1024,epochs=50)
+V100 GPU was 8ms/step of 1024 with batches taking about 4ms and using 16.5 GB of GPU RAM
+
+System RAM
+GPU RAM
+
+
+## Instructions
+
+Mount google drive into notebook
+
+```
+from google.colab import drive
+drive.mount('/content/drive')
+```
+
+Check listing
+
+```
+import os
+os.listdir("/content/drive/MyDrive/DougalNEA")
+```
+
+Load and save from that directory
+
+```
+os.chdir("/content/drive/MyDrive/DougalNEA")
+```
+
+Import the code
+
+```
+import AITrain
+```
+
+And run it
+
+```
+AITrain.train(size=1000000,batch_size=256,epochs=50)
+```
